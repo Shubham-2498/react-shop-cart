@@ -11,7 +11,7 @@ export default function Products(props) {
                         <div className="product">
                             <a href={"#"+product._id}>
                                 <img src={product.image} alt={product.title}/>
-                                <p>
+                                <p >
                                 {product.title}
                             </p>
                             </a>
