@@ -20,7 +20,7 @@ input {
 .grid-container {
   display: grid;
   grid-template-areas: "header" "main" "footer";
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 6rem 1fr 6rem;
   grid-template-columns: 1fr;
   height: 100%;
 }
@@ -83,8 +83,8 @@ a:hover {
   height: 100%;
 }
 .product img{
-  max-height: 37rem;
-  max-width: 37rem;
+  max-height: 38rem;
+  max-width: 36rem;
 }
 .product-price{
   display: flex;
@@ -94,7 +94,7 @@ a:hover {
 .product-price div,
 .product-price  button{
   text-align: center;
-  flex:1;
+  /* flex:1; */
 }
 .product-price div{
   font-size: 2rem;
@@ -109,8 +109,17 @@ a:hover {
   border: 0.1rem #808080 solid;
 }
 .button.primary{
-  background-color: #f0c040
+  background-color: #f0c040;
+  /* width: 40%; */
 }
-.a p{
+a{
   text-decoration: none;
+}
+/*Filter*/
+.filter{
+  display:flex;
+  justify-content: space-between;
+  padding:1rem;
+  margin:1rem;
+  border-bottom: .1rem #c0c0c0 solid;
 }
