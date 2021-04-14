@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import Fade from "react-reveal/Fade";
 import formatter from "./util"
 
 export default function Cart(props) {
@@ -29,6 +30,7 @@ const handleSubmit=(e)=>{
         </div>
       )}
       <div className="cart">
+        <Fade left cascade>
         <ul className="cart-items">
           {props.cartItems.map((item) => {
             return (
@@ -50,6 +52,7 @@ const handleSubmit=(e)=>{
             );
           })}
         </ul>
+        </Fade>
       </div>
       {
           props.cartItems.length!==0?(
@@ -67,7 +70,8 @@ const handleSubmit=(e)=>{
           </div>):""}
 
           {checkout&&
-          <div className="cart">
+          <Fade right cascade>
+            <div className="cart">
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                   <ul>
@@ -90,7 +94,10 @@ const handleSubmit=(e)=>{
                   </ul>
                  </form>
             </div>
-            </div>}
+            </div>
+          </Fade>
+
+          }
     </div>
   );
 }
