@@ -8,9 +8,10 @@ import Cart from "./components/Cart";
 function App() {
   const [products, setProducts] = useState(product.products);
   const [size, setSize] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[]);
   const [sort, setSort] = useState(null);
   console.log("my products===>", products);
+
 
   const filterProducts = (e) => {
     if (e.target.value === "") {
@@ -26,6 +27,7 @@ function App() {
       console.log("hvu");
     }
   };
+
 
   const sortProducts = (e) => {
     console.log("sortProducts", e.target.value);
@@ -49,8 +51,8 @@ function App() {
     );
   };
 
+
   const addToCart = (product) => {
-    console.log(cartItems);
     console.log("in add tt",product);
     let cartItem = cartItems.slice();
     let alreadyInCart = false;
@@ -63,16 +65,24 @@ function App() {
     });
     if (!alreadyInCart) {
       console.log("in new");
-      setCartItems([...cartItems,{...product,count:1}]);
+      cartItem.push({...product,count:1})
+      // setCartItems([...cartItems,{...product,count:1}]);
     }
-    // setCartItems(cartItems)
+    setCartItems(cartItem)
+    localStorage.setItem("cartItems",JSON.stringify(cartItems))
     console.log("cart is===>", cartItems);
   };
 
   const removeItem=(product)=>{
     console.log("hii",product )
     setCartItems(cartItems.filter(item=>item._id!==product._id))
+    localStorage.setItem("cartItems",JSON.stringify(cartItems.filter(item=>item._id!==product._id)))
   }
+
+  const createOrder=(order)=>{
+    alert(`Do you want to confirm order${order.name}`)
+  }
+
   return (
     <div className="grid-container">
       <header>
@@ -91,7 +101,7 @@ function App() {
             <Products products={products} addToCart={addToCart} />
           </div>
           <div className="sidebar">
-            <Cart cartItems={cartItems} removeItem={removeItem} />
+            <Cart cartItems={cartItems} removeItem={removeItem} createOrder={createOrder}/>
           </div>
         </div>
       </main>
